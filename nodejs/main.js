@@ -30,8 +30,6 @@ api.image_search(host, port, "../test.png", function(err, result) {
 
     console.log(">>> image search results");
     api.image_search_result(host, port, result.id, function(err, result2) {
-       console.log(result2.target)
-       console.log(result2.result.length)
        for(i=0; i<result2.result.length; i++) {
          item = result2.result[i];
          console.log("     ---- 视频名字: " + item.video_name + "\t视频链接 " + item.mp4url + "\t的第" + item.t + "秒" + "\t截图是"  + item.frameurl + "\tdistance是" + item.distance)
