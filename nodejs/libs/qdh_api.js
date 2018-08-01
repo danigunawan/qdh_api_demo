@@ -67,6 +67,32 @@ function video_upload(host, port, filepath, description, cb) {
     });
 }
 
+function video_lists(host, port, cb) {
+    if(!host || !port) {
+        return cb && cb("invalid Parameters")
+    }
+
+    var options = {
+        host: host,
+        port: port,
+        method: "GET",
+        path: '/api/videos/',
+        auth: "admin:super"
+    }
+    http.get(options,function(req2,res2){
+      var html='';
+      req2.on('data',function(data){
+          html+=data;
+      });
+      req2.on('end',function(){
+        //console.log('>>>  get ' + html)
+        html = JSON.parse(html);
+        return cb && cb(null, html)
+      });
+    });
+}
+
 module.exports = {
-  video_upload : video_upload
+  video_upload : video_upload,
+  video_lists : video_lists
 }

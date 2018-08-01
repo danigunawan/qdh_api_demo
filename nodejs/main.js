@@ -10,3 +10,11 @@ api.video_upload(host, port, "../citest.mp4", "测试视频2", function(err) {
     }
     console.log(">>> uploaded");
 })
+
+console.log(">>> video lists");
+api.video_lists(host, port, function(err, videos) {
+    console.log("     ---- total videos: " + videos.length)
+    for(i=0;i<videos.length;i++) {
+        console.log("     ---- " + videos[i].name + ' id=' + videos[i].id)
+    }
+})
